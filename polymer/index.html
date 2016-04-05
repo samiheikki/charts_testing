@@ -8,5 +8,10 @@
   </head>
   <body>
     <chart-testing></chart-testing>
+    <script type="text/javascript">
+        document.querySelector('vaadin-line-chart').addEventListener('point-mouse-over',function(){
+          console.log("a")
+        });
+    </script>
   </body>
 </html>

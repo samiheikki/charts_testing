@@ -1,8 +1,9 @@
-import {Directive, ElementRef, Output, HostListener, EventEmitter, Provider, forwardRef, Renderer} from 'angular2/core';
+import {Directive, ElementRef, Output, HostListener, EventEmitter, Provider, forwardRef, Renderer, OnInit} from 'angular2/core';
 import {NG_VALUE_ACCESSOR} from 'angular2/src/common/forms/directives/control_value_accessor';
 import {DefaultValueAccessor} from 'angular2/src/common/forms/directives/default_value_accessor';
 import {CONST_EXPR} from 'angular2/src/facade/lang';
 declare var Polymer;
+declare var HTMLImports;
 
 @Directive({
   selector: 'vaadin-line-chart'
@@ -11,17 +12,22 @@ export class VaadinLineChart  {
 
   private element;
 
+  constructor(private _renderer: Renderer, private _el: ElementRef) {
+  }
+
+  ngOnInit() {
+    this.element = this._el.nativeElement;
+    Polymer.Base.importHref('bower_components/vaadin-charts/vaadin-line-chart.html', this.onImport.bind(this));
+  }
+
   onImport(e) {
+    HTMLImports.whenReady(function() {
+      console.log("ready");
+    });
     console.log(e);
     if (this.element.reloadConfiguration) {
       // Charts need reloadConfiguration called if light dom configuration changes dynamically
       this.element.reloadConfiguration();
     }
   }
-
-  constructor(renderer: Renderer, el: ElementRef) {
-    this.element = el.nativeElement;
-    Polymer.Base.importHref('bower_components/vaadin-charts/vaadin-line-chart.html', this.onImport.bind(this));
-  }
-
 }

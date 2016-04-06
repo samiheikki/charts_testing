@@ -18,30 +18,8 @@ export class VaadinLineChart extends DefaultValueAccessor {
 
   private element;
 
-  /*@Output() valueChange: EventEmitter<any> = new EventEmitter(false);
-  @HostListener('value-changed', ['$event.detail.value'])
-  valuechanged(value) {
-    this.valueChange.emit(value);
-    if (value) {
-      // Assuming that the registered onChange function is only used
-      // for the pristine/dirty status here.
-      this.onChange(value);
-    }
-  }
-
-  @Output() invalidChange: EventEmitter<any> = new EventEmitter(false);
-  @HostListener('invalid-changed', ['$event.detail.value'])
-  invalidchanged(value) {
-    this.invalidChange.emit(value);
-  }*/
-
   onImport(e) {
     console.log(e);
-    /*this.element.$$('paper-input-container').addEventListener('blur', () => {
-      if (!this.element.opened && !this.element._opened) {
-        this.onTouched();
-      }
-    });*/
     if (this.element.reloadConfiguration) {
       // Charts need reloadConfiguration called if light dom configuration changes dynamically
       this.element.reloadConfiguration();
@@ -53,13 +31,5 @@ export class VaadinLineChart extends DefaultValueAccessor {
     this.element = el.nativeElement;
     Polymer.Base.importHref('bower_components/vaadin-charts/vaadin-line-chart.html', this.onImport.bind(this));
   }
-
-  /* Vaadin chart things
-  if (this.element.reloadConfiguration) {
-    // Charts need reloadConfiguration called if light dom configuration changes dynamically
-    this.element.reloadConfiguration();
-  }
-
-  */
 
 }

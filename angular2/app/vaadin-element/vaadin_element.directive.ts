@@ -5,7 +5,7 @@ import {Directive, ViewContainerRef} from 'angular2/core';
 * This directive aims to overcome the current issues in integrating vaadin-elements to an Angular 2 app.
 */
 @Directive({
-  selector: '[vaadin-chart]'
+  selector: '[vaadin-chart], vaadin-license-checker'
 })
 export class VaadinElement {
 

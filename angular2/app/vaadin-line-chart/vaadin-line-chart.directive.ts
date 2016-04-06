@@ -4,15 +4,8 @@ import {DefaultValueAccessor} from 'angular2/src/common/forms/directives/default
 import {CONST_EXPR} from 'angular2/src/facade/lang';
 declare var Polymer;
 
-const VAADIN_LINE_CHART_CONTROL_VALUE_ACCESSOR = CONST_EXPR(new Provider(
-    NG_VALUE_ACCESSOR, {
-      useExisting: forwardRef(() => VaadinLineChart),
-      multi: true
-    }));
-
 @Directive({
-  selector: 'vaadin-line-chart',
-  providers: [VAADIN_LINE_CHART_CONTROL_VALUE_ACCESSOR]
+  selector: 'vaadin-line-chart'
 })
 export class VaadinLineChart extends DefaultValueAccessor {
 

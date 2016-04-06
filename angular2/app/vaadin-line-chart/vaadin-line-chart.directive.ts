@@ -7,7 +7,7 @@ declare var Polymer;
 @Directive({
   selector: 'vaadin-line-chart'
 })
-export class VaadinLineChart extends DefaultValueAccessor {
+export class VaadinLineChart  {
 
   private element;
 
@@ -20,7 +20,6 @@ export class VaadinLineChart extends DefaultValueAccessor {
   }
 
   constructor(renderer: Renderer, el: ElementRef) {
-    super(renderer, el);
     this.element = el.nativeElement;
     Polymer.Base.importHref('bower_components/vaadin-charts/vaadin-line-chart.html', this.onImport.bind(this));
   }

@@ -1,33 +1,56 @@
-import {Directive, ElementRef, Output, HostListener, EventEmitter, Provider, forwardRef, Renderer, OnInit} from 'angular2/core';
-import {NG_VALUE_ACCESSOR} from 'angular2/src/common/forms/directives/control_value_accessor';
-import {DefaultValueAccessor} from 'angular2/src/common/forms/directives/default_value_accessor';
-import {CONST_EXPR} from 'angular2/src/facade/lang';
+import {Directive, ElementRef, OnInit} from 'angular2/core';
 declare var Polymer;
-declare var HTMLImports;
 
 @Directive({
-  selector: 'vaadin-line-chart'
+  selector: `
+  vaadin-area-chart,
+  vaadin-arearange-chart,
+  vaadin-areaspline-chart,
+  vaadin-areasplinerange-chart,
+  vaadin-bar-chart,
+  vaadin-boxplot-chart,
+  vaadin-bubble-chart,
+  vaadin-candlestick-chart,
+  vaadin-column-chart,
+  vaadin-columnrange-chart,
+  vaadin-errorbar-chart,
+  vaadin-flags-chart,
+  vaadin-funnel-chart,
+  vaadin-gauge-chart,
+  vaadin-heatmap-chart,
+  vaadin-line-chart,
+  vaadin-ohlc-chart,
+  vaadin-pie-chart,
+  vaadin-polygon-chart,
+  vaadin-pyramid-chart,
+  vaadin-scatter-chart,
+  vaadin-solidgauge-chart,
+  vaadin-sparkline,
+  vaadin-spline-chart,
+  vaadin-treemap-chart,
+  vaadin-waterfall-chart
+  `
 })
-export class VaadinLineChart  {
+export class VaadinCharts {
 
-  private element;
+  private _element;
 
-  constructor(private _renderer: Renderer, private _el: ElementRef) {
+  constructor(private _el: ElementRef) {
   }
 
   ngOnInit() {
-    this.element = this._el.nativeElement;
-    Polymer.Base.importHref('bower_components/vaadin-charts/vaadin-line-chart.html', this.onImport.bind(this));
+    this.import();
+  }
+
+  import() {
+    this._element = this._el.nativeElement;
+    Polymer.Base.importHref('bower_components/vaadin-charts/' + this._element.tagName.toLowerCase() + '.html', this.onImport.bind(this));
   }
 
   onImport(e) {
-    HTMLImports.whenReady(function() {
-      console.log("ready");
-    });
-    console.log(e);
-    if (this.element.reloadConfiguration) {
+    if (this._element.reloadConfiguration) {
       // Charts need reloadConfiguration called if light dom configuration changes dynamically
-      this.element.reloadConfiguration();
+      this._element.reloadConfiguration();
     }
   }
 }

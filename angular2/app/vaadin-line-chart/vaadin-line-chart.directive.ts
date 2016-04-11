@@ -1,4 +1,4 @@
-import {Directive, ElementRef, OnInit} from 'angular2/core';
+import {Directive, ElementRef, OnInit, Input, Component, DoCheck, IterableDiffers} from 'angular2/core';
 declare var Polymer;
 
 @Directive({
@@ -31,7 +31,7 @@ declare var Polymer;
   vaadin-waterfall-chart
   `
 })
-export class VaadinCharts {
+export class VaadinCharts implements OnInit {
 
   private _element;
 
@@ -51,6 +51,44 @@ export class VaadinCharts {
     if (this._element.reloadConfiguration) {
       // Charts need reloadConfiguration called if light dom configuration changes dynamically
       this._element.reloadConfiguration();
+    }
+  }
+}
+
+@Directive({
+  selector: 'data-series'
+})
+export class DataSeries implements OnInit, DoCheck {
+
+  private _element;
+  private _differ;
+
+  @Input()
+  data: any;
+
+  constructor(private _el: ElementRef, differs: IterableDiffers) {
+    this._differ = differs.find([]).create(null);
+  }
+
+  ngOnInit() {
+    this._element = this._el.nativeElement;
+  }
+
+  ngDoCheck() {
+    //TODO This method is invoked on every event, this may effect performance. TEST IT.
+
+    //This is needed to be able to specify data as a string, because differ.diff, raises an exception
+    // when getting string as an input.
+    //<data-series data="[123,32,42,11]"> </data-series> won't work without it
+    if(typeof(this.data)==="string") {
+      this.data=JSON.parse(this.data);
+    }
+    const changes = this._differ.diff(this.data);
+    if (changes) {
+
+      // The items property must be set to a clone of the collection because of
+      // how iron-list behaves.
+      this._element.data = changes.collection.slice(0);
     }
   }
 }

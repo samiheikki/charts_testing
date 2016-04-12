@@ -5,11 +5,11 @@ import {PipeTest} from './pipes/pipe-test';
 @Component({
   selector: 'my-app',
   template: `
-  <input #testinput>
+  <input #testinput (keyup)="0">
   <button (click)="onKey()">Change MyComponent</button>
 <vaadin-line-chart vaadin-chart #chart>
 <chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
+<data-series [data]="testinput.value">
 </data-series>
 <x-axis>
   <chart-title>Shoe size (EU)</chart-title>
@@ -18,7 +18,7 @@ import {PipeTest} from './pipes/pipe-test';
   <chart-title>Age (years)</chart-title>
 </y-axis>
 </vaadin-line-chart>
-<vaadin-column-chart vaadin-chart #chart>
+<!--<vaadin-column-chart vaadin-chart #chart>
 <chart-title>{{foobar}}</chart-title>
 <data-series [data]="dummyData">
 </data-series>
@@ -28,216 +28,7 @@ import {PipeTest} from './pipes/pipe-test';
 <y-axis>
 <chart-title>Age (years)</chart-title>
 </y-axis>
-</vaadin-column-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
-<vaadin-line-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
-</data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-line-chart>
+</vaadin-column-chart>-->
     `,
   directives: [VaadinCharts, DataSeries],
   pipes: [PipeTest]

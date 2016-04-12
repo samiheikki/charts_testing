@@ -34,6 +34,7 @@ declare var Polymer;
 export class VaadinCharts implements OnInit {
 
   private _element;
+  private _imported;
 
   constructor(private _el: ElementRef) {
   }
@@ -43,6 +44,7 @@ export class VaadinCharts implements OnInit {
   }
 
   import() {
+    this._imported = false;
     this._element = this._el.nativeElement;
     Polymer.Base.importHref('bower_components/vaadin-charts/' + this._element.tagName.toLowerCase() + '.html', this.onImport.bind(this));
   }
@@ -52,6 +54,11 @@ export class VaadinCharts implements OnInit {
       // Charts need reloadConfiguration called if light dom configuration changes dynamically
       this._element.reloadConfiguration();
     }
+    this._imported = true;
+  }
+
+  isImported() {
+    return this._imported;
   }
 }
 
@@ -66,7 +73,7 @@ export class DataSeries implements OnInit, DoCheck {
   @Input()
   data: any;
 
-  constructor(private _el: ElementRef, differs: IterableDiffers) {
+  constructor(private _el: ElementRef, differs: IterableDiffers, private _chart: VaadinCharts) {
     this._differ = differs.find([]).create(null);
   }
 
@@ -77,11 +84,23 @@ export class DataSeries implements OnInit, DoCheck {
   ngDoCheck() {
     //TODO This method is invoked on every event, this may effect performance. TEST IT.
 
+    if(!this._chart.isImported()) {
+      return;
+    }
+
     //This is needed to be able to specify data as a string, because differ.diff, raises an exception
     // when getting string as an input.
     //<data-series data="[123,32,42,11]"> </data-series> won't work without it
-    if(typeof(this.data)==="string") {
-      this.data=JSON.parse(this.data);
+    if (typeof (this.data) === "string") {
+      try {
+        this.data = JSON.parse(this.data);
+      } catch (err) {
+        try {
+          this.data = JSON.parse('[' + this.data + ']');
+        } catch (err) {
+          return;
+        }
+      }
     }
     const changes = this._differ.diff(this.data);
     if (changes) {

@@ -22,10 +22,17 @@
   <script>
     HTMLImports.whenReady(function() {
       System.config({
+        map: {
+          'vaadin-charts': 'bower_components/vaadin-charts/directives'
+        },
         packages: {
           app: {
             format: 'register',
             defaultExtension: 'js'
+          },
+          'vaadin-charts': {
+            defaultExtension: 'js',
+            main: 'vaadin-charts.js'
           }
         }
       });

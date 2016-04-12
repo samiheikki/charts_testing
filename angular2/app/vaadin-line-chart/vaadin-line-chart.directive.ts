@@ -93,7 +93,9 @@ export class DataSeries implements OnInit, DoCheck {
     //<data-series data="[123,32,42,11]"> </data-series> won't work without it
     if (typeof (this.data) !== 'object') {
       try {
+        console.log(this.data);
         this.data = JSON.parse(this.data);
+        console.log(this.data);
         if (typeof (this.data) !== 'object') {
           throw 'type is not object';
         }
@@ -105,6 +107,7 @@ export class DataSeries implements OnInit, DoCheck {
         }
       }
     }
+    console.log(this.data);
     const changes = this._differ.diff(this.data);
     if (changes) {
 

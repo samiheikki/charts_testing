@@ -2,13 +2,17 @@ import {Component} from 'angular2/core';
 import {VaadinCharts, DataSeries} from 'vaadin-charts';
 import {PipeTest} from './pipes/pipe-test';
 
+import {Test1Component} from './components/test-1/test1.component';
+import {Test2Component} from './components/test-2/test2.component';
+
 @Component({
   selector: 'my-app',
   template: `
-  <input #testinput (keyup)="0" [value]="fooData">
+  <input #testinput (keyup)="0">
   <button (click)="onKey()">Change MyComponent</button>
-<vaadin-line-chart vaadin-chart #chart>
+<vaadin-line-chart vaadin-chart #chart (importReady)="samifunc()">
 <chart-title>{{foobar}}</chart-title>
+  <subtitle>The bigger they are the harder they pull</subtitle>
 <data-series [data]="testinput.value">
 </data-series>
 <x-axis>
@@ -18,27 +22,18 @@ import {PipeTest} from './pipes/pipe-test';
   <chart-title>Age (years)</chart-title>
 </y-axis>
 </vaadin-line-chart>
-<vaadin-column-chart vaadin-chart #chart>
-<chart-title>{{foobar}}</chart-title>
-<data-series [data]="dummyData">
+<vaadin-bar-chart>
+<chart-title>
+Some title
+</chart-title>
+<subtitle>Some subtitle</subtitle>
+
+<data-series name="Data as tag">
+<data>200,214, 201, 421</data>
 </data-series>
-<x-axis>
-<chart-title>Shoe size (EU)</chart-title>
-</x-axis>
-<y-axis>
-<chart-title>Age (years)</chart-title>
-</y-axis>
-</vaadin-column-chart>
-<vaadin-bubble-chart id="bubble-chart">
-  <chart zoom-type="xy"></chart>
-  <title>Vaadin Charts Bubbles</title>
-  <data-series [data]="dummyData">
-  </data-series>
-  <data-series [data]="dummyData">
-  </data-series>
-</vaadin-bubble-chart>
+</vaadin-bar-chart>
     `,
-  directives: [VaadinCharts, DataSeries],
+  directives: [VaadinCharts, DataSeries, Test1Component, Test2Component],
   pipes: [PipeTest]
 })
 export class AppComponent {
@@ -91,5 +86,8 @@ export class AppComponent {
     setTimeout(function(){
       //self.dummyData = [[17, 0.3], [18, 0.7]];
     }, 1000);*/
+  }
+  samifunc() {
+    console.log("asddsada");
   }
 }
